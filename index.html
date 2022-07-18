@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubic Exchange</title>
+</head>
+
+<body>
+
+  <div id="rubic-widget-root"></div>
+
+</body>
+<script type="text/javascript" src="https://widgets.rubic.exchange/iframe/bundle.min.js"></script>
+<script defer type="text/javascript">
+  // describe widget configuration and saving to a global variable for future use
+  const configuration = {
+    from: 'MATIC',
+    to: 'XFUN',
+    fromChain: 'POLYGON',
+    toChain: 'POLYGON',
+    amount: 1,
+    iframe: 'flex',
+    hideSelectionFrom: false,
+    hideSelectionTo: true,
+    theme: 'light',
+    background: 'red',
+    injectTokens: {
+      'xfun': [
+        '0x419d0d8bdd9af5e606ae2232ed285aff190e711b'
+      ]
+    },
+    slippagePercent: {
+      instantTrades: 2,
+      crossChain: 5
+    }
+  }
+
+  const onThemeChange = (newTheme) => {
+    // copy base dark configuration
+    const newConfiguration = {
+      ...configuration
+    };
+
+    if (newTheme === 'light') {
+      // modify configuration for the light theme. You can change any properties
+      newConfiguration.theme = 'light';
+      newConfiguration.background = 'white';
+
+      // remove old widget and recreate new with light configuration
+      rubicWidget.init(newConfiguration);
+    } else {
+      // remove old widget and recreate new with dark configuration
+      rubicWidget.init(newConfiguration);
+    }
+  }
+
+  // prevent accidental changes to the object, for example, when re-creating a widget for another theme
+  Object.freeze(configuration);
+
+  // create widget
+  rubicWidget.init(configuration);
+</script>
+
+</html>
