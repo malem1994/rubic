@@ -8,7 +8,29 @@
   <title>Rubic Exchange</title>
 </head>
 
-<body>
+<style>
+  #body {
+    background: #181a19;
+    margin: 0;
+  }
+
+  #rubic-widget-root {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+
+  #rubic-widget-root #rubic-widget-iframe {
+    min-width: 100vw;
+    min-height: 100vh;
+    border-radius: 0px !important;
+  }
+
+  .iframe-content[_ngcontent-dcj-c271] {
+    width: 100% !important;
+  }
+</style>
+
+<body id="body">
 
   <div id="rubic-widget-root"></div>
 
@@ -17,8 +39,8 @@
 <script defer type="text/javascript">
   // describe widget configuration and saving to a global variable for future use
   const configuration = {
-    from: '',
-    to: '',
+    from: 'ETH',
+    to: 'FUN',
     fromChain: 'ETH',
     toChain: 'ETH',
     amount: 1,
@@ -26,7 +48,7 @@
     hideSelectionFrom: false,
     hideSelectionTo: false,
     theme: 'dark',
-    background: '#28372E',
+    background: '#181a19',
     injectTokens: {},
     slippagePercent: {
       instantTrades: 2,
@@ -58,6 +80,16 @@
 
   // create widget
   rubicWidget.init(configuration);
+</script>
+
+<script defer>
+  const body = document.getElementById("body");
+
+  body.style.display = "none";
+
+  window.onload = (event) => {
+    body.style.display = "block";
+  };
 </script>
 
 </html>
